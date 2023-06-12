@@ -12,10 +12,15 @@ public record Author(String id, String firstName, String lastName) {
     );
 
     public static Author getById(String id) {
-        System.out.println("IT RAN HERE" + id);
-
         return authors.stream()
                 .filter(author -> author.id.equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static Author getByLastName(String lastName) {
+        return authors.stream()
+                .filter(author -> author.lastName.equals(lastName))
                 .findFirst()
                 .orElse(null);
     }
